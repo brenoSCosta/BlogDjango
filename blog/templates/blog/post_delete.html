@@ -1,0 +1,15 @@
+{% extends 'projeto/base/base.html' %}
+{% block title %} Blog - Deletar Postagem {% endblock title %}
+{% block content %}
+    <h1>Deletar Postagem</h1>
+
+    <form action="" method="post" class="form-nois">
+        {% csrf_token %}
+        <p>Voce tem certeza que deseja excluir o registro "{{ post.title }} " ?</p>
+        {{ form.as_p }}
+        <input type="submit" value="Confirmar">
+    </form>
+
+
+
+{% endblock content %}
