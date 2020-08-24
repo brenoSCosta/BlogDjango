@@ -1,4 +1,5 @@
 from django.db import models
+from django.template.defaultfilters import slugify
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
@@ -32,6 +33,10 @@ class Post(models.Model):
 
     def get_absolute_url_update(self):
         return reverse('post_edit', args=[self.slug])
+
+    def save(self, *args, **kwargs):
+        self.slug = self.slug or slugify(self.title)
+        super().save(*args, **kwargs)
 
     class Meta:
         ordering = ('-published',)
