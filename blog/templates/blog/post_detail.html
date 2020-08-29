@@ -1,5 +1,18 @@
 {% extends 'projeto/base/base.html' %}
+{% load static %}
 {% block title %} Blog - Detalhe {% endblock title %}
+{% block imageHeader %}
+    {% if object.image != null %}
+        {{ object.image.url }}
+    {% else %}
+        {% static 'img/home-bg.jpg' %}
+    {% endif %}
+{% endblock imageHeader %}
+
+{% block titlePost %}
+    <h1>{{ object.title }}</h1>
+{% endblock %}
+
 {% block content %}
 
     {% if messages %}
@@ -10,12 +23,24 @@
         </ul>
     {% endif %}
 
-
     <div class="post-entry">
-        <h2>{{ object.title }}</h2>
-        <p>{{ object.content }}</p>
+
+        <p>{{ object.content|safe }}</p>
+        {% if object.image is not null %}
+            <img src={{ object.image }}>
+        {% endif %}
     </div>
-    <a href="{{ post.get_absolute_url_update }}">Editar Postagem do Blog</a><br>
-    <a href="{% url 'post_delete' object.pk %}">Apagar Postagem</a>
+    {% if user.is_authenticated %}
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-primary m-1 "><a class="text-white"
+                                                                  href="{{ post.get_absolute_url_update }}">Editar
+                Postagem do
+                Blog</a><br></button>
+            <button type="button" class="btn btn-primary m-1"><a class="text-white"
+                                                                 href="{% url 'post_delete' object.pk %}">Apagar
+                Postagem
+            </a></button>
+        </div>
+    {% endif %}
 
 {% endblock content %}

@@ -1,13 +1,27 @@
 {% extends 'projeto/base/base.html' %}
+{% load static %}
 {% block title %} Blog - Deletar Postagem {% endblock title %}
+
+{% block imageHeader %}
+    {% if object.image != null %}
+        {{ object.image.url }}
+    {% else %}
+        {% static 'img/home-bg.jpg' %}
+    {% endif %}
+{% endblock imageHeader %}
+
+{% block titlePost %}
+    <h1>{{ object.title }}</h1>
+{% endblock %}
+
 {% block content %}
     <h1>Deletar Postagem</h1>
 
-    <form action="" method="post" class="form-nois">
+    <form action="" method="post">
         {% csrf_token %}
         <p>Voce tem certeza que deseja excluir o registro "{{ post.title }} " ?</p>
         {{ form.as_p }}
-        <input type="submit" value="Confirmar">
+        <button type="submit" class="btn btn-primary">Confirmar</button>
     </form>
 
 

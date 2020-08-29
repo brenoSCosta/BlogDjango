@@ -1,7 +1,16 @@
 {% extends 'projeto/base/base.html' %}
+{% load static %}
 {% block title %} Blog - Home {% endblock title %}
+{% block imageHeader %}
+    {% static 'img/home-bg.jpg' %}
+{% endblock imageHeader %}
+{% block titlePost %}
+    <h1>Django</h1>
+    <span class="subheading">Aprendendo django</span>
+{% endblock %}
 {% block content %}
 
+    <!-- Mensagem de sucesso ou falha-->
     {% if messages %}
         <ul class="messages">
             {% for message in messages %}
@@ -10,6 +19,7 @@
         </ul>
     {% endif %}
 
+    <!-- Listagem dos posts -->
     {% for post in object_list %}
         {% if post.status == 'publicado' %}
             <div class="post-preview">
@@ -18,7 +28,7 @@
                         {{ post.title }}
                     </h2>
                     <h3 class="post-subtitle">
-                        {{ post.title }}
+                        {{ post.content | safe | truncatechars:'200' }}
                     </h3>
                 </a>
                 <p class="post-meta">Posted by

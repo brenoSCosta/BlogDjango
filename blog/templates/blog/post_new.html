@@ -1,16 +1,30 @@
 {% extends 'projeto/base/base.html' %}
+{% load static %}
+{% load bootstrap %}
 {% block title %} Blog - Nova Postagem {% endblock title %}
+
+{% block imageHeader %}
+    {% static 'img/home-bg.jpg' %}
+{% endblock imageHeader %}
+
+{% block titlePost %}
+    <h1>Django</h1>
+    <span class="subheading">Aprendendo django</span>
+{% endblock %}
+
 {% block content %}
-    <h1>Nova Postagem</h1>
-    <div class="teste">
-        <form action="" method="post" class="form-nois">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="Salvar">
-        </form>
+    <div class="container justify-content-center">
+        <div class="card">
+            <div class="card-header">
+                <h2> Nova Postagem</h2>
+            </div>
+            <div class="card-body">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form|bootstrap }}
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </form>
+            </div>
+        </div>
     </div>
-
-
-
-
 {% endblock content %}
