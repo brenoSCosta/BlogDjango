@@ -28,7 +28,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['https://git.heroku.com/projeto-django-aprendizado.git', ]
+ALLOWED_HOSTS = ['*', ]
 
 # Application definition
 
@@ -139,5 +139,3 @@ EMAIL_HOST = 'smtp.mailtrap.io'
 EMAIL_HOST_USER = '1f21d5c76e0ede'
 EMAIL_HOST_PASSWORD = 'b748854d2a5d11'
 EMAIL_PORT = '2525'
-
-django_heroku.settings(locals())
