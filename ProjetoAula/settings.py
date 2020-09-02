@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 from decouple import config
 from dj_database_url import parse as dburl
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -27,7 +28,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://git.heroku.com/projeto-django-aprendizado.git', ]
 
 # Application definition
 
@@ -138,3 +139,5 @@ EMAIL_HOST = 'smtp.mailtrap.io'
 EMAIL_HOST_USER = '1f21d5c76e0ede'
 EMAIL_HOST_PASSWORD = 'b748854d2a5d11'
 EMAIL_PORT = '2525'
+
+django_heroku.settings(locals())
