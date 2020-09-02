@@ -135,3 +135,8 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_URL = '/static/'
+
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = '1f21d5c76e0ede'
+EMAIL_HOST_PASSWORD = 'b748854d2a5d11'
+EMAIL_PORT = '2525'
