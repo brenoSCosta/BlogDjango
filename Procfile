@@ -1,1 +1,1 @@
-web: gunicorn ProjetoAula.wsgi
+web: gunicorn ProjetoAula.wsgi --log-file -
